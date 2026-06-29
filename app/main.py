@@ -21,10 +21,6 @@ app = FastAPI(middleware=[
 template_env = Environment(loader = FileSystemLoader("app/templates",), )
 template_env.globals['get_flashed_messages'] = get_flashed_messages
 templates = Jinja2Templates(env=template_env)
-static_files = StaticFiles(directory="app/static")
-
-app.mount("/static", static_files, name="static")
-
 
 @app.get('/', response_class=RedirectResponse)
 async def index_view(

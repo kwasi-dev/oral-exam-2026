@@ -13,3 +13,6 @@ class User(UserBase, table=True):
 
     def check_password(self, plaintext_password:str):
         return PasswordHash.recommended().verify(password=plaintext_password, hash=self.password)
+    
+    def get_profile_picture_url(self):
+        return f"https://weblabs.web.app/api/brainrot/{self.id}.webp"
