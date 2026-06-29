@@ -24,6 +24,9 @@ def initialize():
         db.commit()        
         print("Database Initialized")
 
+@cli.command()
+def test():
+    pass
 
 if __name__ == "__main__":
     cli()

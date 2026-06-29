@@ -9,10 +9,10 @@ from fastapi.templating import Jinja2Templates
 from app.utilities import get_flashed_messages
 from jinja2 import Environment, FileSystemLoader
 from sqlmodel import select
-from app.models import User
+from app.models import *
 from app.utilities import flash, create_access_token
 from fastapi.staticfiles import StaticFiles
-
+from typing import Optional
 
 app = FastAPI(middleware=[
     Middleware(SessionMiddleware, secret_key=get_settings().secret_key)
@@ -69,7 +69,7 @@ def login_action(
 
 
 @app.get('/app')
-def home_view(request: Request, user: AuthDep):
+def home_view(request: Request, user: AuthDep, db: SessionDep):
   return templates.TemplateResponse(
           request=request, 
           name="index.html",
